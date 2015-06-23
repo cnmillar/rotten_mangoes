@@ -6,12 +6,12 @@ class MoviesController < ApplicationController
 
 	def create
 		@movie = Movie.new(
-			title: params[:movies][:title],
-			director: params[:movies][:director],
-			runtime_in_minutes: params[:movies][:runtime_in_minutes],
-			description: params[:movies][:description],
-			poster_image_url: params[:movies][:poster_image_url],
-			release_date: params[:movies][:release_date]
+			title: params[:movie][:title],
+			director: params[:movie][:director],
+			runtime_in_minutes: params[:movie][:runtime_in_minutes],
+			description: params[:movie][:description],
+			poster_image_url: params[:movie][:poster_image_url],
+			release_date: params[:movie][:release_date]
 			)
 
 		if @movie.save
