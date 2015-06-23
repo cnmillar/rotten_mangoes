@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'pry'
 gem 'carrierwave'
-# gem 'rmagick'
+gem 'rmagick'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'

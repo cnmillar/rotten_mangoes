@@ -5,14 +5,7 @@ class MoviesController < ApplicationController
 	end
 
 	def create
-		@movie = Movie.new(
-			title: params[:movie][:title],
-			director: params[:movie][:director],
-			runtime_in_minutes: params[:movie][:runtime_in_minutes],
-			description: params[:movie][:description],
-			poster_image_url: params[:movie][:poster_image_url],
-			release_date: params[:movie][:release_date]
-			)
+		@movie = Movie.new(movie_params)
 
 		if @movie.save
 			redirect_to movie_path(@movie), notice: "#{@movie.title} was submitted successfully!"
@@ -58,7 +51,7 @@ class MoviesController < ApplicationController
   protected
 
   def movie_params
-    params.require(:movie).permit(:title, :director, :runtime_in_minutes, :description, :poster_image_url, :release_date)
+    params.require(:movie).permit(:title, :director, :runtime_in_minutes, :description, :poster_image_url, :release_date, :image, :remote_image_url)
   end
 
 end
