@@ -1,15 +1,9 @@
 class Admin::UsersController < ApplicationController
 
+	before_filter :authorize
+
 	def index
-
-	end
-
-	def new
-		@user = User.new
-	end
-
-	def create
-
+		@users = User.all
 	end
 
 	def show
@@ -27,4 +21,18 @@ class Admin::UsersController < ApplicationController
 	def update
 
 	end
+
+	protected
+
+	def authorize
+		unless current_user && current_user.admin
+			flash[:error] = "unauthorized access"
+			redirect_to movies_path
+			false
+		end
+	end
+
+	def user_params
+    params.require(:user).permit(:email, :firstname, :lastname, :password, :password_confirmation, :admin)
+  end
 end
