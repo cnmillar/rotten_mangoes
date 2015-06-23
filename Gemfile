@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 # Added gems (non-default)
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'pry'
+gem 'carrierwave'
+# gem 'rmagick'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
