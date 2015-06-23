@@ -1,0 +1,11 @@
+<h1>Welcome to Rotten Mangoes!</h1>
+<%= link_to "Create a post!", new_movie_path %>
+<hr>
+<h4>Here is a list of movies:</h4>
+<% @movies.each do |movie| %>
+	<h1><%=link_to movie.title, movie_path(movie)%></h1>
+  <h3><%= movie.director %></h3>
+  <p><%= movie.runtime_in_minutes %></p>
+  <p><%= movie.description %></p>
+  <small>- <%= movie.release_date %></small>
+<% end %>

@@ -14,3 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(document).ready(function(){
+	$('#edit_movie_1').on("ajax:success",function(e, data, status, xhr){
+	console.log(data);
+	$('#response').html('<h1>'+data.movie.director+'</h1>')
+	})
+})
+
