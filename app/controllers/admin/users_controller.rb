@@ -6,7 +6,6 @@ class Admin::UsersController < ApplicationController
 		@user = User.new
 	end
 
-
 	def index
 		@users = User.all.page(params[:page]).per(1)
 	end

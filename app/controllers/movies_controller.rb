@@ -48,6 +48,16 @@ class MoviesController < ApplicationController
 		end
 	end
 
+	def search
+		if params[:duration] == "under"
+			@search_result = Movie.where("title LIKE ? OR director LIKE ? OR runtime_in_minutes < ?", params[:title], params[:director], 90)
+		elsif params[:duration] == "between"
+			@search_result = Movie.where("title LIKE ? or director LIKE ? OR (runtime_in_minutes > ? AND runtime_in_minutes < ?)", params[:title], params[:director], 90, 120)
+		elsif params[:duration] == "over"
+			@search_result = Movie.where("title LIKE ? OR director LIKE ? OR runtime_in_minutes > ? ", params[:title], params[:director], 120)
+		end
+	end
+
   protected
 
   def movie_params
