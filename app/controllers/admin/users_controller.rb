@@ -43,6 +43,24 @@ class Admin::UsersController < ApplicationController
     end
 	end
 
+	def switch_user
+
+		@user = User.find(params[:user_id])
+		if current_user.admin
+			login = session[:login] ||= {}
+			login[:id] = { admin_id: current_user.id, user_id: @user.id }
+	    if @user && @user.authenticate(@user.password_digest)
+	      session[:user_id] = user.id
+	    else
+	      flash.now[:alert] = "Log in failed..."
+	      render :new
+	    end
+
+		end
+
+		redirect_to movies_path
+	end
+
 	protected
 
 	def authorize
