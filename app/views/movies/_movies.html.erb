@@ -1,0 +1,7 @@
+	<h1><%=link_to movie.title, movie_path(movie)%></h1>
+	<small>- <%= formatted_date(movie.release_date) %></small></br>
+
+  <h3><%= movie.director %></h3>
+  <p><%= movie.runtime_in_minutes %></p>
+  <p><%= movie.description %></p>
+  <%= movie.review_average %>/10
