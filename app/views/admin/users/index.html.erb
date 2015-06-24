@@ -1,9 +1,21 @@
 <h3>Users</h3>
 
-<ul>
+<%= paginate @users %>
+
+<table style="width:100%">
+	<tr>
+		<td>Name</td>
+		<td>Email</td>
+		<td>Member Since</td>
+		<td>Administrator?</td>
+	</tr>
 	<% @users.each do |user| %>
-		<li>
-			<%= user.email %> (since <%= formatted_date(user.created_at) %>) <%= '*' if user.admin %>
-		</li>
+		<tr>
+			<td><%= link_to "#{user.firstname} #{user.lastname}", "/admin/users/#{user.id}/" %></td>
+			<td><%= user.email %></td>
+			<td><%= formatted_date(user.created_at) %></td>
+			<td><%= user.admin ? 'yes': 'no' %></td>
+		</tr>
 	<% end %>
-</ul>
+</table>
+</br>
