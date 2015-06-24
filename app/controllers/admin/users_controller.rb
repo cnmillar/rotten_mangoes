@@ -6,6 +6,15 @@ class Admin::UsersController < ApplicationController
 		@user = User.new
 	end
 
+	def create
+		@user = User.new(user_params)
+		if @user.save
+
+		else
+
+		end
+	end
+
 	def index
 		@users = User.all.page(params[:page]).per(1)
 	end
@@ -16,6 +25,7 @@ class Admin::UsersController < ApplicationController
 
 	def destroy
 		@user = User.find(params[:id])
+		UserMailer.delete_email(@user).deliver
 		@user.destroy
 		redirect_to admin_users_path
 	end
@@ -37,7 +47,7 @@ class Admin::UsersController < ApplicationController
 
 	def authorize
 		unless current_user && current_user.admin
-			flash[:error] = "unauthorized access"
+			flash[:error] = "Unauthorized access"
 			redirect_to movies_path
 			false
 		end

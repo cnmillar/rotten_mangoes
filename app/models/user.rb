@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
 	validates :email, uniqueness: true
 
+	before_destroy :email
+
   def full_name
     "#{firstname} #{lastname}"
   end
