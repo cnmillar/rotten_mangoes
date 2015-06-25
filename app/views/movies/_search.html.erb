@@ -1,0 +1,15 @@
+<%= form_tag("movies/search", method: "get", class: "form-inline") do %>
+	<div class = "form-group">
+	 	<%= label_tag("search_term", "Movie title or director:") %>
+	  <%= text_field_tag("search_term") %>
+  </div>
+
+	<div class = "form-group">
+	 	<%= label_tag(:duration, "   Duration:") %>
+	 	<%= select_tag(:duration, options_for_select([["Under 90 minutes", :under],["Between 90 and 120 minutes", :between],["Over 120 minutes", :over]]), include_blank: true) %>
+  </div> 
+	<%= button_tag(type: "submit", class: "btn btn-default") do %>
+	    Search <i class="icon-repeat"></i>
+	<% end %>
+
+<% end %>

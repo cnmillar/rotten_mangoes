@@ -1,7 +1,17 @@
-	<h1><%=link_to movie.title, movie_path(movie)%></h1>
-	<small>- <%= formatted_date(movie.release_date) %></small></br>
-
-  <h3><%= movie.director %></h3>
-  <p><%= movie.runtime_in_minutes %></p>
-  <p><%= movie.description %></p>
-  <%= movie.review_average %>/10
+<div class="col-md-2">
+	<h4>Ranking</h4>
+</div>	
+<div class="col-md-3">
+	<h4><%=link_to movie.title, movie_path(movie)%></h4>
+</div>
+<div class="col-md-3">
+	<h4><%= movie.director %></h4>
+</div>
+<div class="col-md-2">
+	<h4><%= formatted_date(movie.release_date) %></h4>
+</div>
+<div class="col-md-2">
+	<h4><%= movie.review_average %>/10</h4>
+</div>
+</br>
+  

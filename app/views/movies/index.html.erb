@@ -3,26 +3,22 @@
 	<h1>Welcome back, <%= current_user.firstname %>!</h1>
 <% end %>
 <hr>
-<h3> Search for a film:</h3>
-<%= form_tag("movies/search", method: "get") do %>
-	<div>
-	 	<%= label_tag("search_term", "Search for a movie title or director:") %>
-	  <%= text_field_tag("search_term") %>
-  </div>
-	<div>
-	 	<%= label_tag(:duration, "Duration:") %>
-	 	<%= select_tag(:duration, options_for_select([["Under 90 minutes", :under],["Between 90 and 120 minutes", :between],["Over 120 minutes", :over]]), include_blank: true) %>
-  </div> 
+<div class="col-md-2">
+	<h3>Ranking</h3>
+</div>
+<div class="col-md-3">
+	<h3>Title</h3>
+</div>
+<div class="col-md-3">
+	<h3>Director</h3>
+</div>
+<div class="col-md-2">
+	<h3>Release Date</h3>
+</div>
+<div class="col-md-2">
+	<h3>Rating</h3>
+</div>
 
-  <%= submit_tag("Search") %>
-<% end %>
-
-<hr>
-
-<!-- <%# link_to "User Profiles", users_path %> </br> -->
-<%= link_to "Create a post!", new_movie_path %>
-
-<h4>Here is a list of movies:</h4>
 <% @movies.each do |movie| %>
 	<%= render "movies", :movie => movie %>
 <% end %>

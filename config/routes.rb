@@ -17,6 +17,7 @@ RottenMangues::Application.routes.draw do
 
   namespace :admin do
     resources :users
+    resources :movies, only: [:destroy]
   end
 
   resource :session, only: [:new, :create, :destroy]

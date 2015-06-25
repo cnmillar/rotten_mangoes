@@ -1,18 +1,24 @@
 <footer>
+  <br>
   <small>
-    <% if current_user %>
-      Signed in as <%= current_user.email %> (<%= link_to "Log out", session_path, method: :delete %>)
-    <% else %>
-      <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
-    <% end %>
 
-    <% if current_admin %>
-			<%= link_to "All users", admin_users_path %>
-    <% end %>
+    <div class="col-md-10">
+      <% if current_user %>
+        Signed in as <%= current_user.email %> (<%= link_to "Log out", session_path, method: :delete %>)
+      <% else %>
+        <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
+      <% end %>
+    </div>
 
-    <% if current_admin && (current_admin != current_user) %>
-      <%= link_to "Switch Back!", admin_switch_back_path(current_admin.id) %>
-    <% end %>
+    <div class="col-md-2">
+      <% if current_admin %>
+  			<%= link_to "All users", admin_users_path %>
+      <% end %>
+
+      <% if current_admin && (current_admin != current_user) %>
+        <%= link_to "Switch Back!", admin_switch_back_path(current_admin.id) %>
+      <% end %>
+    </div>
 
   </small>
 </footer>
