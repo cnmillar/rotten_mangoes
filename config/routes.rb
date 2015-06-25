@@ -1,14 +1,19 @@
 RottenMangues::Application.routes.draw do
 
   get "movies/search", to: 'movies#search'
-  # get "admin/switch-to-user/:user_id", to: 'admin/users#switch_user'
-  # post "admin/switch-to-user/:user_id", to: 'admin/users#switch_user', as: 'admin_switch_user'
+  # get "users/profiles", to: 'users#profiles', as: 'users_profiles'
+  # get "users/:id/profile", to: 'users#show'
+  get "admin/switch-to-user/:user_id", to: 'admin/users#switch_user'
+  post "admin/switch-to-user/:user_id", to: 'admin/users#switch_user', as: 'admin_switch_user'
+  post "admin/switch-back/:user_id", to: 'admin/users#switch_back', as: 'admin_switch_back'
+  get "admin/switch-back/:user_id", to: 'admin/users#switch_back'
+
 
   resources :movies do
     resources :reviews, only: [:new, :create]
   end
   
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :index, :show]
 
   namespace :admin do
     resources :users

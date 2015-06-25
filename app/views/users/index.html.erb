@@ -1,0 +1,8 @@
+<h1>User Profiles</h1>
+
+<% @users.each do |user| %>
+	<%= link_to user.firstname, user_path(user) %></br>
+<% end %>
+</br>
+<strong><%= link_to "All movies", movies_path%></strong>
+</br></br>

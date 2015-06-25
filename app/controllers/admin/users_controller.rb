@@ -44,27 +44,21 @@ class Admin::UsersController < ApplicationController
 	end
 
 	def switch_user
-
 		@user = User.find(params[:user_id])
-		if current_user.admin
-			login = session[:login] ||= {}
-			login[:id] = { admin_id: current_user.id, user_id: @user.id }
-	    if @user && @user.authenticate(@user.password_digest)
-	      session[:user_id] = user.id
-	    else
-	      flash.now[:alert] = "Log in failed..."
-	      render :new
-	    end
+		session[:user_id] = @user.id
+		redirect_to user_path(@user)
+	end
 
-		end
-
-		redirect_to movies_path
+	def switch_back
+		@user = User.find(params[:user_id])
+		session[:user_id] = @user.id
+		redirect_to admin_users_path
 	end
 
 	protected
 
 	def authorize
-		unless current_user && current_user.admin
+		unless current_admin
 			flash[:error] = "Unauthorized access"
 			redirect_to movies_path
 			false

@@ -1,18 +1,14 @@
 <h1>Welcome to Rotten Mangoes!</h1>
 <hr>
+<h3> Search for a film:</h3>
 <%= form_tag("movies/search", method: "get") do %>
 	<div>
-	 	<%= label_tag("title", "Title:") %>
-	  <%= text_field_tag("title") %>
+	 	<%= label_tag("search_term", "Search for a movie title or director:") %>
+	  <%= text_field_tag("search_term") %>
   </div>
- 	<div>
-	 	<%= label_tag("director", "Director:") %>
-	  <%= text_field_tag("director") %>
-  </div>
-
 	<div>
 	 	<%= label_tag(:duration, "Duration:") %>
-	 	<%= select_tag(:duration, options_for_select([["Under 90 minutes", :under],["Between 90 and 120 minutes", :between],["Over 120 minutes", :over]])) %>
+	 	<%= select_tag(:duration, options_for_select([["Under 90 minutes", :under],["Between 90 and 120 minutes", :between],["Over 120 minutes", :over]]), include_blank: true) %>
   </div> 
 
   <%= submit_tag("Search") %>
@@ -20,6 +16,7 @@
 
 <hr>
 
+<%= link_to "User Profiles", users_path %> </br>
 <%= link_to "Create a post!", new_movie_path %>
 
 <h4>Here is a list of movies:</h4>

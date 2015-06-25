@@ -21,8 +21,12 @@ class Movie < ActiveRecord::Base
 
   validate :release_date_is_in_the_future	
 
-  scope :search_results, -> (title, director, max, min){ where("title LIKE ? OR director LIKE ? OR (runtime_in_minutes < ? AND runtime_in_minutes > ?)", title, director, max, min)}
-  
+  # scope :search_results, -> (title, director, max, min){ where("title LIKE ? OR director LIKE ? OR (runtime_in_minutes < ? AND runtime_in_minutes > ?)", title, director, max, min)}
+  # scope :title_search, -> (search_term){ where("title LIKE ?", "%#{search_term}%")}
+  # scope :director_search, -> (search_term){ where("director LIKE ?", "%#{search_term}%")}
+  scope :title_director_search, -> (search_term){ where("title LIKE ? OR director LIKE ?", "%#{search_term}%", "%#{search_term}%")}
+  scope :duration_search, -> (max, min){ where("runtime_in_minutes < ? AND runtime_in_minutes > ?", max, min)}
+
   def review_average
     if reviews.size > 0 
       reviews.sum(:rating_out_of_ten)/reviews.size if reviews.size > 0

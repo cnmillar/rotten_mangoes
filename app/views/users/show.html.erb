@@ -1,0 +1,11 @@
+<h1><%= @user.full_name %> (<%= @user.email %>)</h1>
+<h3>Reviews:</h3>
+<ul>
+	<% @user.reviews.each do |review| %>
+		<li><%= link_to review.movie.title, movie_path(review.movie) %>
+			<ul>
+				<li><%= review.text %></li>
+			</ul>
+		</li>
+	<% end %>
+</ul>

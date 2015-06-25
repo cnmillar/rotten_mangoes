@@ -6,8 +6,13 @@
       <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
     <% end %>
 
-    <% if current_user && current_user.admin %>
+    <% if current_admin %>
 			<%= link_to "All users", admin_users_path %>
     <% end %>
+
+    <% if current_admin && (current_admin != current_user) %>
+      <%= link_to "Switch Back!", admin_switch_back_path(current_admin.id) %>
+    <% end %>
+
   </small>
 </footer>

@@ -48,26 +48,6 @@ class MoviesController < ApplicationController
 		end
 	end
 
-	# def search
-	# 	if params[:duration] == "under"
-	# 		@search_result = Movie.search_query(params[:title], params[:director], 0, 90)
-	# 	elsif params[:duration] == "between"
-	# 		@search_result = Movie.search_query(params[:title], params[:director], 90, 120)
-	# 	elsif params[:duration] == "over"
-	# 		@search_result = Movie.search_query(params[:title], params[:director], 120, 300)
-	# 	end
-	# end
-
-	def search
-		if params[:duration] == "under"
-			@search_result = Movie.where("title LIKE ? OR director LIKE ? OR runtime_in_minutes < ?", params[:title], params[:director], 90)
-		elsif params[:duration] == "between"
-			@search_result = Movie.where("title LIKE ? or director LIKE ? OR (runtime_in_minutes > ? AND runtime_in_minutes < ?)", params[:title], params[:director], 90, 120)
-		elsif params[:duration] == "over"
-			@search_result = Movie.where("title LIKE ? OR director LIKE ? OR runtime_in_minutes > ? ", params[:title], params[:director], 120)
-		end		
-	end
-
 	def search
 		if params[:duration] == "under"
 			max = 90
@@ -78,10 +58,16 @@ class MoviesController < ApplicationController
 		elsif params[:duration] == "over"
 			max = 3000
 			min = 120
-		end		
-		@search_results = Movie.search_results(params[:title],params[:director], max, min)
-	end
+		end
 
+		@search_results = Movie.all
+
+		if !params[:search_term].empty? 
+			@search_results = @search_results.title_director_search(params[:search_term])
+		elsif !params[:duration].empty?
+			@search_results = @search_results.duration_search(max, min)
+		end
+	end
 
   protected
 
