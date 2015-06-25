@@ -1,4 +1,7 @@
-<h1>Welcome to Rotten Mangoes!</h1>
+
+<% if current_user %>
+	<h1>Welcome back, <%= current_user.firstname %>!</h1>
+<% end %>
 <hr>
 <h3> Search for a film:</h3>
 <%= form_tag("movies/search", method: "get") do %>
@@ -16,7 +19,7 @@
 
 <hr>
 
-<%= link_to "User Profiles", users_path %> </br>
+<!-- <%# link_to "User Profiles", users_path %> </br> -->
 <%= link_to "Create a post!", new_movie_path %>
 
 <h4>Here is a list of movies:</h4>

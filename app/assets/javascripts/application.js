@@ -14,6 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery
+//= require bootstrap-sprockets
+
 $(document).ready(function(){
 	$('#edit_movie_1').on("ajax:success",function(e, data, status, xhr){
 	console.log(data);
