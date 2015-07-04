@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
 		@movie = Movie.new(movie_params)
 
 		if @movie.save
-			 UserMailer.welcome_email(@user).deliver_now
+			 # UserMailer.welcome_email(@user).deliver_now
 			redirect_to movie_path(@movie), notice: "#{@movie.title} was submitted successfully!"
 		else
 			render :new
